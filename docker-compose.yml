@@ -1,0 +1,58 @@
+version: '3.9'
+
+services:
+
+    # Nginx + PHP-FPM
+    sum-machine-php:
+        image: sum-machine-php
+        container_name: sum-machine-php
+        ports:
+            - "${APP_PORT}:80"
+        build:
+            context: ./
+            dockerfile: ./docker/php.Dockerfile
+            args:
+                - UID=${UID:-1000}
+                - GID=${GID:-1000}
+        links:
+            - sum-machine-db
+        depends_on:
+            - sum-machine-db
+        working_dir: /var/www/html
+        env_file:
+            - ./.env
+        volumes:
+            - ./:/var/www/html:delegated
+        networks:
+            - sum-machine-network
+
+    # PostgreSQL
+    sum-machine-db:
+        container_name: sum-machine-db
+        image: postgres:latest
+        hostname: sum-machine-db
+        environment:
+            POSTGRES_USER: ${DB_USERNAME}
+            POSTGRES_PASSWORD: ${DB_PASSWORD}
+        volumes:
+            - './docker/postgres/init.sql:/docker-entrypoint-initdb.d/create_tables.sql'
+        ports:
+            - "${PGSQL_PUBLIC_PORT}:5432"
+        networks:
+            - sum-machine-network
+
+    sum-machine-adminer:
+        container_name: sum-machine-adminer
+        image: adminer:latest
+        restart: always
+        depends_on:
+            - sum-machine-db
+        ports:
+            - "${PGSQL_PUBLIC_ADMINER_PORT}:8080"
+        networks:
+            - sum-machine-network
+
+networks:
+    sum-machine-network:
+        name: sum-machine-network
+        driver: bridge

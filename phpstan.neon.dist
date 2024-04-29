@@ -1,0 +1,25 @@
+parameters:
+	level: 0
+	paths:
+		- app
+		- bootstrap
+		- config
+		- database
+		- routes
+		- lang
+		- tests
+	fileExtensions:
+	    - php
+	parallel:
+	    maximumNumberOfProcesses: 4
+	tmpDir: storage/framework/cache/CI
+	ignoreErrors:
+		-
+			paths:
+				- tests
+				- database/migrations
+			message: '#throws checked exception .+? missing from the PHPDoc @throws tag\.$#'
+	exceptions:
+		check:
+		    missingCheckedExceptionInThrows: true
+		    tooWideThrowType: true

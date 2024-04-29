@@ -1,0 +1,17 @@
+/storage/*.key
+/vendor
+
+*.env
+.env.testing
+
+/.fleet
+/.idea
+/.vscode
+_ide_helper.php
+
+composer-require-checker.phar
+composer-unused.phar
+.php-cs-fixer.cache
+.php_cs.cache
+phpstan.neon
+.phpunit.result.cache

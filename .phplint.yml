@@ -1,0 +1,13 @@
+path: .
+jobs: 20
+extensions:
+  - php
+exclude:
+  - vendor
+  - docker
+  - resources
+  - storage
+  - public
+warning: true
+memory-limit: 512M
+cache: storage/framework/cache/CI/.phplint.cache

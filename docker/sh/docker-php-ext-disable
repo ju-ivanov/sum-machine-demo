@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+
+ext=$1
+
+if test -f "/usr/local/etc/php/conf.d/docker-php-ext-${ext}.ini"; then
+    echo "Disabling extension ${ext}"
+    mv "/usr/local/etc/php/conf.d/docker-php-ext-${ext}.ini" "/usr/local/etc/php/conf.d/docker-php-ext-${ext}.ini-disabled"
+else
+    echo "The extension ${ext} is not enabled"
+fi

@@ -27,7 +27,7 @@ The project provides infrastructure for local deployment & development.
 - PHP Magic Number Detector
 - VAR_DUMP Checker
 - Composer Require Checker
-- Composer Unused Dependenices Checker
+- Composer Unused Dependencies Checker
 
 ## REST API
 

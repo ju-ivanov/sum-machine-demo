@@ -129,7 +129,7 @@ Apply migrations:
 
 Rollback the last migration:
 
-    php artisan rollback
+    php artisan migrate:rollback
 
 Launch tests:
 

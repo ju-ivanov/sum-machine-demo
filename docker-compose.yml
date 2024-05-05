@@ -41,6 +41,7 @@ services:
         networks:
             - sum-machine-network
 
+    # Adminer GUI
     sum-machine-adminer:
         container_name: sum-machine-adminer
         image: adminer:latest
